@@ -248,9 +248,11 @@
       this.handleQualityChange_ = this.handleQualityChange_.bind(this);
       this.changeHandler_ = () => {
         const defaultResolution = this.options_.defaultResolution;
+        const defaultResolutionRegex = new RegExp(defaultResolution);
         for (let i = 0; i < this.items.length; i++) {
-          if (this.items[i].options_.label.indexOf(defaultResolution) !== -1) {
+          if (this.items[i].options_.label.indexOf(defaultResolution) !== -1 || defaultResolutionRegex.test(this.items[i].options_.label)) {
             this.items[i].handleClick();
+            break;
           }
         }
       };
